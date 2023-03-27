@@ -15,6 +15,8 @@ class Company(metaclass=PoolMeta):
             ('is_institution', '=', True)
             ], required=True,
         ondelete='CASCADE')
+    student = fields.One2Many('company.student', 'company', 'Discentes',
+        help="Adicionar discentes a instituição.")
 
 
 class Employee(metaclass=PoolMeta):
