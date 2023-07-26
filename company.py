@@ -41,15 +41,26 @@ class Student(ModelSQL, ModelView):
                 (),
             )
         ], depends=['start_date'],
-        help="Fim da formação.") 
+        help="Fim da formação.")    
     party = fields.Many2One(
         'party.party', 'Nome', 
         required=True, ondelete='CASCADE',
+        domain=([('is_person', '=', True)]),
         help="Nome do discente.")
     company = fields.Many2One(
         'company.company', 'Instituição',
-        required=True, readonly=True,
-        help="Nome da instituição.")
+        readonly=True,
+        help="Nome da instituição.")       
+    
+    @classmethod
+    def __setup__(cls):
+        super(Student, cls).__setup__()
+        table = cls.__table__()
+        cls._sql_constraints = [
+            ('key', Unique(table, table.party),
+            u'Não foi possível cadastrar o nova discente, por favor verifica se o discente já existe.')
+        ]
+        cls._order = [('party', 'ASC')]
         
     @classmethod
     def default_start_date(cls):
@@ -64,15 +75,5 @@ class Student(ModelSQL, ModelView):
 
     @classmethod
     def search_rec_name(cls, name, clause):
-        return [('party.rec_name',) + tuple(clause[1:])]         
-    
-    @classmethod
-    def __setup__(cls):
-        super(Student, cls).__setup__()
-        table = cls.__table__()
-        cls._sql_constraints = [
-            ('key', Unique(table, table.party),
-            u'Não foi possível cadastrar o nova discente, por favor verifica se o discente já existe.')
-        ]
-        cls._order = [('party', 'ASC')]
+        return [('party.rec_name',) + tuple(clause[1:])]
 
