@@ -5,6 +5,18 @@ from trytond.pool import PoolMeta
 from datetime import date
 
 
+class Company(metaclass=PoolMeta):
+    'Company'
+    __name__ = 'company.company'
+    
+    party = fields.Many2One(
+        'party.party', 'Party', 
+        domain=[
+            ('is_institution', '=', True)
+            ], required=True,
+        ondelete='CASCADE')
+
+
 class Employee(metaclass=PoolMeta):
     'Employee'
     __name__ = 'company.employee'
@@ -12,6 +24,17 @@ class Employee(metaclass=PoolMeta):
     teacher = fields.Boolean(
         'Docente', 
         help="A entidade será tratada como docente.")
+    party = fields.Many2One(
+        'party.party', 'Party', 
+        domain=[
+            ('is_person', '=', True)
+            ], required=True, 
+        context={
+            'company': If(
+                Eval('company', -1) >= 0, Eval('company', None), None),
+            },
+        depends={'company'},
+        help="The party which represents the employee.")
 
     @classmethod
     def default_start_date(cls):
@@ -26,26 +49,27 @@ class Student(ModelSQL, ModelView):
         help="Número de matrícula do discente.")
     start_date = fields.Date('Início',
         domain=[
-            If(
-                (Eval('start_date')) & (Eval('end_date')),
-                ('start_date', '<=', Eval('end_date')),
-                (),
-            )
-        ], depends=['end_date'],
+                If(
+                    (Eval('start_date')) & (Eval('end_date')),
+                    ('start_date', '<=', Eval('end_date')),
+                    (),
+                )
+            ], depends={'end_date'},
         required=True, help="Início da formação.")
     end_date = fields.Date('Fim',
         domain=[
-            If(
-                (Eval('start_date')) & (Eval('end_date')),
-                ('end_date', '>=', Eval('start_date')),
-                (),
-            )
-        ], depends=['start_date'],
+                If(
+                    (Eval('start_date')) & (Eval('end_date')),
+                    ('end_date', '>=', Eval('start_date')),
+                    (),
+                )
+            ], depends=['start_date'],
         help="Fim da formação.")    
     party = fields.Many2One(
         'party.party', 'Nome', 
-        required=True, ondelete='CASCADE',
-        domain=([('is_person', '=', True)]),
+        required=True, domain=[
+            ('is_person', '=', True)
+            ],
         help="Nome do discente.")
     company = fields.Many2One(
         'company.company', 'Instituição',
