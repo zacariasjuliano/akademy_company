@@ -35,7 +35,7 @@ class Employee(metaclass=PoolMeta):
             'company': If(
                 Eval('company', -1) >= 0, Eval('company', None), None),
             },
-        depends={'company'},
+        depends={'company'}, ondelete="RESTRICT",
         help="The party which represents the employee.")
 
     @classmethod
@@ -71,11 +71,11 @@ class Student(ModelSQL, ModelView):
         'party.party', 'Nome', 
         required=True, domain=[
             ('is_person', '=', True)
-            ],
+            ], ondelete="RESTRICT",
         help="Nome do discente.")
     company = fields.Many2One(
         'company.company', 'Instituição',
-        readonly=True,
+        readonly=True, ondelete="RESTRICT",
         help="Nome da instituição.")       
     
     @classmethod

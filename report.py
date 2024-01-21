@@ -14,8 +14,7 @@ class CompanyReport(Report):
         company = Company.browse(data['ids'])
 
         context['company'] = company
-        context['create_date'] = date.today()
-        
+        context['create_date'] = date.today()        
         return context
    
 
@@ -30,8 +29,7 @@ class EmployeeReport(Report):
         employee = Employee.browse(data['ids'])
 
         context['employee'] = employee
-        context['create_date'] = date.today()
-        
+        context['create_date'] = date.today()        
         return context
 
 
@@ -46,6 +44,5 @@ class StudentReport(Report):
         student = Student.browse(data['ids'])
 
         context['student'] = student
-        context['create_date'] = date.today()
-        
+        context['create_date'] = date.today()        
         return context
