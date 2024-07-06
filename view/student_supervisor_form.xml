@@ -4,7 +4,7 @@
         <label name="party"/>
         <field name="party"/> 
         <label name="degree_kinship"/>
-        <field name="degree_kinship"/>  
+        <field name="degree_kinship"/> 
         <label name="student"/>
         <field name="student"/>
     </group>      

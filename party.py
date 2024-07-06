@@ -6,7 +6,7 @@ class Party(metaclass=PoolMeta):
     'Party'
     __name__ = 'party.party'
     
-    student = fields.One2Many('company.student', 'party', 'Discente')  
+    student = fields.One2Many('company.student', 'party', 'Discente')    
     student_supervisor = fields.One2Many('company.student.supervisor', 
-        'party', 'Endidade')        
+        'party', 'Endidade')    
 
