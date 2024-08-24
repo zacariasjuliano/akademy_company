@@ -34,6 +34,19 @@
                 action="act_company_student"/> 
         <!-- end DISCENTES --> 
 
+         <!-- start EMPLOYEE -->
+            <record model="ir.ui.view" id="student_supervisor_view_form">
+                <field name="model">company.student.supervisor</field>
+                <field name="type">form</field>
+                <field name="name">student_supervisor_form</field>
+            </record>
+            <record model="ir.ui.view" id="student_supervisor_view_tree">
+                <field name="model">company.student.supervisor</field>
+                <field name="type">tree</field>
+                <field name="name">student_supervisor_list</field>
+            </record>
+        <!-- start EMPLOYEE --> 
+
         <!-- start EMPLOYEE -->
             <record model="ir.ui.view" id="employee_view_form">
                 <field name="model">company.employee</field>

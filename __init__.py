@@ -7,6 +7,7 @@ def register():
 	Pool.register(
 		company.Employee,
         company.Student,
+		company.StudentSupervisor,
 		party.Party,
 		
 		module='akademy_company', type_='model'

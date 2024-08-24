@@ -76,7 +76,9 @@ class Student(ModelSQL, ModelView):
     company = fields.Many2One(
         'company.company', 'Instituição',
         readonly=True, ondelete="RESTRICT",
-        help="Nome da instituição.")       
+        help="Nome da instituição.")     
+    student_supervisor = fields.One2Many('company.student.supervisor', 
+        'student', 'Discente')      
     
     @classmethod
     def __setup__(cls):
@@ -103,3 +105,25 @@ class Student(ModelSQL, ModelView):
     def search_rec_name(cls, name, clause):
         return [('party.rec_name',) + tuple(clause[1:])]
 
+
+class StudentSupervisor(ModelSQL, ModelView):
+    'Student Supervisor'
+    __name__ = 'company.student.supervisor'    
+	
+    description = fields.Text('Descrição')
+    degree_kinship = fields.Selection([
+        ('father', 'Pai'),
+        ('mother', 'Mãe'),
+        ('response', 'Responsável'),
+        ], 'Grau parentesco', required=True)
+    phone_number = fields.Char('Telefone', size=20,
+        help="Número de telefone")    
+    student = fields.Many2One('company.student', 'Discente', required=True)
+    party = fields.Many2One('party.party', 'Encarregado', required=True)
+
+    def get_rec_name(self, name):
+        return self.party.rec_name
+
+    @classmethod
+    def search_rec_name(cls, name, clause):
+        return [('party.rec_name',) + tuple(clause[1:])]
