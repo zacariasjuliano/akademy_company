@@ -1,6 +1,12 @@
 <tryton>
     <data>  
         <!-- start EMPRESA -->
+            <record model="ir.ui.view" id="company_view_form">
+                <field name="model">company.company</field>
+                <field name="inherit" ref="company.company_view_form"/>
+                <field name="name">company_form</field>
+            </record>
+
             <menuitem name="Instituição" parent="akademy_party.akademy_party" id="akademy_company" 
                 icon="tryton-company" sequence="6" action="company.act_company_list"/> 
         <!-- end EMPRESA -->
@@ -34,7 +40,7 @@
                 action="act_company_student"/> 
         <!-- end DISCENTES --> 
 
-         <!-- start EMPLOYEE -->
+         <!-- start ENCARREGADO DE EDUCAÇÃO -->
             <record model="ir.ui.view" id="student_supervisor_view_form">
                 <field name="model">company.student.supervisor</field>
                 <field name="type">form</field>
@@ -45,7 +51,7 @@
                 <field name="type">tree</field>
                 <field name="name">student_supervisor_list</field>
             </record>
-        <!-- start EMPLOYEE --> 
+        <!-- start ENCARREGADO DE EDUCAÇÃO --> 
 
         <!-- start EMPLOYEE -->
             <record model="ir.ui.view" id="employee_view_form">

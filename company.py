@@ -39,6 +39,16 @@ class Employee(metaclass=PoolMeta):
         help="The party which represents the employee.")
 
     @classmethod
+    def __setup__(cls):
+        super(Employee, cls).__setup__()
+        table = cls.__table__()
+        cls._sql_constraints = [
+            ('key', Unique(table, table.party, table.company), 
+            u'Não foi possível cadastrar o(a) novo(a) funcionário(a), por favor verifica se o(a) funcionário(a) já existe.')
+        ]
+        cls._order = [('party', 'ASC')]
+
+    @classmethod
     def default_start_date(cls):
         return date.today()  
     
@@ -85,8 +95,8 @@ class Student(ModelSQL, ModelView):
         super(Student, cls).__setup__()
         table = cls.__table__()
         cls._sql_constraints = [
-            ('key', Unique(table, table.party),
-            u'Não foi possível cadastrar o nova discente, por favor verifica se o discente já existe.')
+            ('key', Unique(table, table.party, table.company),
+            u'Não foi possível cadastrar o novo(a) discente, por favor verifica se o(a) discente já existe.')
         ]
         cls._order = [('party', 'ASC')]
         
@@ -120,6 +130,15 @@ class StudentSupervisor(ModelSQL, ModelView):
         help="Número de telefone")    
     student = fields.Many2One('company.student', 'Discente', required=True)
     party = fields.Many2One('party.party', 'Encarregado', required=True)
+
+    @classmethod
+    def __setup__(cls):
+        super(StudentSupervisor, cls).__setup__()
+        table = cls.__table__()
+        cls._sql_constraints = [
+            ('key', Unique(table, table.party, table.student), 
+            u'Não foi possível cadastrar o(a) novo(a) encarregado(a), por favor verifica se o(a) encarregado(a) já está associado ao discente.')
+        ]
 
     def get_rec_name(self, name):
         return self.party.rec_name
