@@ -5,6 +5,7 @@ from . import report
 
 def register():
 	Pool.register(
+		company.Company,
 		company.Employee,
         company.Student,
 		company.StudentSupervisor,
