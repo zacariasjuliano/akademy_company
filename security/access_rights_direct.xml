@@ -1,71 +1,34 @@
 <?xml version="1.0"?>
-<!-- GRUPO DE PERMIÇÕES PARA USUÁRIOS SECRETÁRIOS -->
+<!-- GRUPO DE PERMIÇÕES PARA USUÁRIOS DIREÇÃO -->
 <tryton>
     <data>
         <!-- Acesso ao menu Company -->
         <record model="ir.ui.menu-res.group" 
-            id="akademy_company-group_akademy_secret">
+            id="akademy_company-group_akademy_direc">
             <field name="menu" ref="akademy_company"/>
-            <field name="group" ref="akademy_party.group_akademy_secret"/>
+            <field name="group" ref="akademy_party.group_akademy_direc"/>
         </record>
 
         <!-- Acesso ao menu Employee -->
         <record model="ir.ui.menu-res.group" 
-            id="akademy_employee-group_akademy_secret">
+            id="akademy_employee-group_akademy_direc">
             <field name="menu" ref="akademy_employee"/>
-            <field name="group" ref="akademy_party.group_akademy_secret"/>
+            <field name="group" ref="akademy_party.group_akademy_direc"/>
         </record>
 
         <!-- Acesso ao menu Student -->
         <record model="ir.ui.menu-res.group" 
-            id="akademy_company_student-group_akademy_secret">
+            id="akademy_company_student-group_akademy_direc">
             <field name="menu" ref="akademy_company_student"/>
-            <field name="group" ref="akademy_party.group_akademy_secret"/>
+            <field name="group" ref="akademy_party.group_akademy_direc"/>
         </record>
 
         <!-- Definição de Regras de Acesso aos Modelos -->
         <!-- Modelo COMPANY -->
         <record model="ir.model.access" 
-            id="access_akademy_companies-group_akademy_secret">
+            id="access_akademy_companies-group_akademy_direc">
             <field name="model" search="[('model', '=', 'company.company')]"/>
-            <field name="group" ref="akademy_party.group_akademy_secret"/>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_delete" eval="False"/>
-        </record>
-        <!-- access rule group -->
-        <record model="ir.rule.group" 
-            id="rule_group_akademy_companies-group_akademy_secret">
-            <field name="name">Instituição</field>
-            <field name="model" 
-                search="[('model', '=', 'company.company')]"/>
-            <field name="global_p" eval="False"/>
-            <field name="default_p" eval="False"/>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_delete" eval="False"/>
-        </record>
-        <!--
-        <record model="ir.rule" id="rule_group_akademy_companies_line1">
-            <field name="domain" pyson="1" 
-                eval="[('company', '=', Eval('user', {}).get('company', None))]" />
-            <field name="rule_group" ref="rule_group_akademy_companies-group_akademy_secret"/>
-        </record>
-        -->
-        <record model="ir.rule.group-res.group" 
-            id="res_group_akademy_companies-group_akademy_secret">
-            <field name="rule_group" ref="rule_group_akademy_companies-group_akademy_secret"/>
-            <field name="group" ref="akademy_party.group_akademy_secret"/>
-        </record>
-
-        <!-- Definição de Regras de Acesso aos Modelos -->
-        <!-- Modelo EMPLOYEE --> 
-        <record model="ir.model.access" 
-            id="access_akademy_emploies-group_akademy_secret">
-            <field name="model" search="[('model', '=', 'company.employee')]"/>
-            <field name="group" ref="akademy_party.group_akademy_secret"/>
+            <field name="group" ref="akademy_party.group_akademy_direc"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
             <field name="perm_create" eval="True"/>
@@ -73,7 +36,44 @@
         </record>
         <!-- access rule group -->
         <record model="ir.rule.group" 
-            id="rule_group_akademy_emploies-group_akademy_secret">
+            id="rule_group_akademy_companies-group_akademy_direc">
+            <field name="name">Instituição</field>
+            <field name="model" 
+                search="[('model', '=', 'company.company')]"/>
+            <field name="global_p" eval="False"/>
+            <field name="default_p" eval="False"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+        <!--
+        <record model="ir.rule" id="rule_group_akademy_companies_line1">
+            <field name="domain" pyson="1" 
+                eval="[('company', '=', Eval('user', {}).get('company', None))]" />
+            <field name="rule_group" ref="rule_group_akademy_companies-group_akademy_direc"/>
+        </record>
+        -->
+        <record model="ir.rule.group-res.group" 
+            id="res_group_akademy_companies-group_akademy_direc">
+            <field name="rule_group" ref="rule_group_akademy_companies-group_akademy_direc"/>
+            <field name="group" ref="akademy_party.group_akademy_direc"/>
+        </record>
+
+        <!-- Definição de Regras de Acesso aos Modelos -->
+        <!-- Modelo EMPLOYEE --> 
+        <record model="ir.model.access" 
+            id="access_akademy_emploies-group_akademy_direc">
+            <field name="model" search="[('model', '=', 'company.employee')]"/>
+            <field name="group" ref="akademy_party.group_akademy_direc"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+        <!-- access rule group -->
+        <record model="ir.rule.group" 
+            id="rule_group_akademy_emploies-group_akademy_direc">
             <field name="name">Funcionários</field>
             <field name="model" 
                 search="[('model', '=', 'company.employee')]"/>
@@ -88,21 +88,21 @@
         <record model="ir.rule" id="rule_group_akademy_emploies_line1">
             <field name="domain" pyson="1" 
                 eval="[('company', '=', Eval('user', {}).get('company', None))]" />
-            <field name="rule_group" ref="rule_group_akademy_emploies-group_akademy_secret"/>
+            <field name="rule_group" ref="rule_group_akademy_emploies-group_akademy_direc"/>
         </record>
         -->
         <record model="ir.rule.group-res.group" 
-            id="res_group_akademy_emploies-group_akademy_secret">
-            <field name="rule_group" ref="rule_group_akademy_emploies-group_akademy_secret"/>
-            <field name="group" ref="akademy_party.group_akademy_secret"/>
+            id="res_group_akademy_emploies-group_akademy_direc">
+            <field name="rule_group" ref="rule_group_akademy_emploies-group_akademy_direc"/>
+            <field name="group" ref="akademy_party.group_akademy_direc"/>
         </record>
 
         <!-- Definição de Regras de Acesso aos Modelos -->
         <!-- Modelo STUDENT -->
         <record model="ir.model.access" 
-            id="access_akademy_students-group_akademy_secret">
+            id="access_akademy_students-group_akademy_direc">
             <field name="model" search="[('model', '=', 'company.student')]"/>
-            <field name="group" ref="akademy_party.group_akademy_secret"/>
+            <field name="group" ref="akademy_party.group_akademy_direc"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
             <field name="perm_create" eval="True"/>
@@ -110,7 +110,7 @@
         </record>
         <!-- access rule group -->
         <record model="ir.rule.group" 
-            id="rule_group_akademy_students-group_akademy_secret">
+            id="rule_group_akademy_students-group_akademy_direc">
             <field name="name">Discentes</field>
             <field name="model" 
                 search="[('model', '=', 'company.student')]"/>
@@ -125,21 +125,21 @@
         <record model="ir.rule" id="rule_group_akademy_students_line1">
             <field name="domain" pyson="1" 
                 eval="[('company', '=', Eval('user', {}).get('company', None))]" />
-            <field name="rule_group" ref="rule_group_akademy_students-group_akademy_secret"/>
+            <field name="rule_group" ref="rule_group_akademy_students-group_akademy_direc"/>
         </record>
         -->
         <record model="ir.rule.group-res.group" 
-            id="res_group_akademy_students-group_akademy_secret">
-            <field name="rule_group" ref="rule_group_akademy_students-group_akademy_secret"/>
-            <field name="group" ref="akademy_party.group_akademy_secret"/>
+            id="res_group_akademy_students-group_akademy_direc">
+            <field name="rule_group" ref="rule_group_akademy_students-group_akademy_direc"/>
+            <field name="group" ref="akademy_party.group_akademy_direc"/>
         </record>
 
         <!-- Definição de Regras de Acesso aos Modelos -->
         <!-- Modelo STUDENT SUPERVISOR --> 
         <record model="ir.model.access" 
-            id="access_akademy_student_supervisors-group_akademy_secret">
+            id="access_akademy_student_supervisors-group_akademy_direc">
             <field name="model" search="[('model', '=', 'company.student.supervisor')]"/>
-            <field name="group" ref="akademy_party.group_akademy_secret"/>
+            <field name="group" ref="akademy_party.group_akademy_direc"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
             <field name="perm_create" eval="True"/>
@@ -147,7 +147,7 @@
         </record>
         <!-- access rule group -->
         <record model="ir.rule.group" 
-            id="rule_group_akademy_student_supervisors-group_akademy_secret">
+            id="rule_group_akademy_student_supervisors-group_akademy_direc">
             <field name="name">Encarregado de Educação</field>
             <field name="model" 
                 search="[('model', '=', 'company.student.supervisor')]"/>
@@ -162,13 +162,13 @@
         <record model="ir.rule" id="rule_group_akademy_student_supervisors_line1">
             <field name="domain" pyson="1" 
                 eval="[('company', '=', Eval('user', {}).get('company', None))]" />
-            <field name="rule_group" ref="rule_group_akademy_student_supervisors-group_akademy_secret"/>
+            <field name="rule_group" ref="rule_group_akademy_student_supervisors-group_akademy_direc"/>
         </record>
         -->
         <record model="ir.rule.group-res.group" 
-            id="res_group_akademy_student_supervisors-group_akademy_secret">
-            <field name="rule_group" ref="rule_group_akademy_student_supervisors-group_akademy_secret"/>
-            <field name="group" ref="akademy_party.group_akademy_secret"/>
+            id="res_group_akademy_student_supervisors-group_akademy_direc">
+            <field name="rule_group" ref="rule_group_akademy_student_supervisors-group_akademy_direc"/>
+            <field name="group" ref="akademy_party.group_akademy_direc"/>
         </record>
         
     </data>
