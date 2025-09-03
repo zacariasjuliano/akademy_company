@@ -5,6 +5,12 @@ from trytond.pool import PoolMeta
 from datetime import date
 
 
+_DEGREE_KINSHIP = [
+    ('Pai', 'Pai'), ('Mãe', 'Mãe'),
+    ('Responsável', 'Responsável'),
+]
+
+
 class Company(metaclass=PoolMeta):
     'Company'
     __name__ = 'company.company'
@@ -27,7 +33,7 @@ class Employee(metaclass=PoolMeta):
         'Docente', 
         help="A entidade será tratada como docente.")
     party = fields.Many2One(
-        'party.party', 'Party', 
+        'party.party', 'Entidade', 
         domain=[
             ('is_person', '=', True)
             ], required=True, 
@@ -36,7 +42,7 @@ class Employee(metaclass=PoolMeta):
                 Eval('company', -1) >= 0, Eval('company', None), None),
             },
         depends={'company'}, ondelete="RESTRICT",
-        help="The party which represents the employee.")
+        help="Escolha a entidade que vau representar o funcionário.")
 
     @classmethod
     def __setup__(cls):
@@ -78,7 +84,7 @@ class Student(ModelSQL, ModelView):
             ], depends=['start_date'],
         help="Fim da formação.")    
     party = fields.Many2One(
-        'party.party', 'Nome', 
+        'party.party', 'Entidade', 
         required=True, domain=[
             ('is_person', '=', True)
             ], ondelete="RESTRICT",
@@ -96,7 +102,7 @@ class Student(ModelSQL, ModelView):
         table = cls.__table__()
         cls._sql_constraints = [
             ('key', Unique(table, table.party, table.company),
-            u'Não foi possível cadastrar o novo(a) discente, por favor verifica se o(a) discente já existe.')
+            u'Não foi possível cadastrar o(a) novo(a) discente, por favor verifica se o(a) discente já existe.')
         ]
         cls._order = [('party', 'ASC')]
         
@@ -121,11 +127,8 @@ class StudentSupervisor(ModelSQL, ModelView):
     __name__ = 'company.student.supervisor'    
 	
     description = fields.Text('Descrição')
-    degree_kinship = fields.Selection([
-        ('father', 'Pai'),
-        ('mother', 'Mãe'),
-        ('response', 'Responsável'),
-        ], 'Grau parentesco', required=True)
+    degree_kinship = fields.Selection(_DEGREE_KINSHIP, 
+        string=u'Grau parentesco', required=True)
     phone_number = fields.Char('Telefone', size=20,
         help="Número de telefone")    
     student = fields.Many2One('company.student', 'Discente', required=True)
