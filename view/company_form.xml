@@ -1,6 +1,6 @@
 <data>
     <xpath expr="/form/notebook/page[@name='employees']" position="after">   
-        <page string="DISCENTES" id="student">
+        <page string="Discentes" id="student">
             <field name="student" mode="tree,form" colspan="2" 
                 view_ids="akademy_company.student_view_list,akademy_company.student_view_form"/>
         </page>
