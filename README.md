@@ -20,7 +20,7 @@ Akademy Company module, that extend the default Tryton ERP company module.
 
 Homepage
 --------
-www.comunidadedosaber.com <br>
+www.comunidadedosaber.ao <br>
 comunidadedsaber@gmail.com
 
 Support

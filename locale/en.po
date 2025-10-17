@@ -15,8 +15,8 @@ msgid "Discentes"
 msgstr "Students"
 
 msgctxt "model:ir.ui.menu,name:akademy_employee"
-msgid "Entidades"
-msgstr "Entities"
+msgid "Funcionários"
+msgstr "Employee"
 
 msgctxt "field:company.company,party:"
 msgid "Entidade"
