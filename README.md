@@ -1,65 +1,53 @@
-Developer: Zacarias Juliano Capingala - Homem Marketing / Comunidade Do Saber
-<br>
-Modulo: Akademy
-<br>
-Versão: 1.0
-<br>
-Data: 10/12/2021
+# 🏫 AKADEMY - Gestão Institucional / ERP
 
-<br><br>
-AKADEMY - Gestão Instituicional / ERP
-====================================================================
-O Akademy é um sistema de gestão instituicional apoiado em um ERP, tornando-o assim um dos primeiros
- ERP Instituicional.
+**Versão:** 1.0  
+**Módulo:** Akademy  
+**Desenvolvedor:** Zacarias Juliano Capingala *(Homem Marketing)*  
+**Data:** 10/12/2021
 
+---
 
-***Akademy Company***
-<br>
-Akademy Company module, that extend the default Tryton ERP company module.
+## 📘 Sobre o Projeto
 
+**Akademy** é um sistema de **Gestão Institucional** integrado a um **ERP (Enterprise Resource Planning)**, concebido para atender às necessidades administrativas, pedagógicas e operacionais de instituições de ensino.
 
-Homepage
---------
-www.comunidadedosaber.ao <br>
-comunidadedsaber@gmail.com
+Seu principal objetivo é oferecer uma solução completa para a **gestão acadêmica e administração da instituição**, promovendo eficiência, transparência e integração entre departamentos.
 
-Support
----------------------   
-Se durante o uso do aplicação oucorerem erros por favor não exite em fazer
- perguntas meios de comunicação, abaixo:
-    
-    comunidadedsaber@gmail.com
-    (+244) 926-585-345
+---
+
+## ⚙️ Módulo Akademy Company
+
+O **Akademy Company (Gestão de Instituições)** é um módulo complementar responsável **expandir as funcionalidades** do módulo de **Gestão de Organizaçõe**, oferecendo ferramentas avançadas para administração organizações.  
+
+---
 
 
-Email
----------------------
-    zacariasjuliano@gmail.com
-    homempmv@gmail.com
+## 🌐 Homepage
 
-<br><br>
+**Website:** [comunidadedosaber.ao](https://comunidadedosaber.ao)  
+**E-mail:** [comunidadedsaber@gmail.com](mailto:comunidadedsaber@gmail.com)
 
-INSTALAÇÃO
-====================================================================
-*** Requisitos ***
+---
 
-trytond (http://www.tryton.org/)
+## 💬 Suporte Técnico
 
-tryton (http://www.tryton.org/)
+Caso encontre erros ou deseje obter suporte técnico, entre em contato pelos canais abaixo:
 
-trytond_party (http://www.tryton.org/)
+- 📧 **E-mail:** [zacariasjuliano@gmail.com](mailto:zacariasjuliano@gmail.com)  
+- 💬 **WhatsApp:** [+244 926 585 345](https://wa.me/244926585345)
 
-trytond_company (http://www.tryton.org/)
+---
 
+## 🧩 Instalação
 
-***Instalação***
-<br>
-Uma vez que baixado e descompactado o código fonte do Akademy,  no
-directório trytond/modules. Em seguida efectuar o login no sistema e clicar em 
-Administração->Modules->Modules, clicar no modulo e efectuar a activação.
+### 📋 Requisitos
 
-Em seguida executa o comando abaixo:
+Antes de iniciar, certifique-se de ter os seguintes componentes instalados:
 
-trytond-admin -c trytond.conf -d sua_base_de_dados --all
+- [Tryton Server](https://www.tryton.org/)
+- [Tryton Client](https://www.tryton.org/)
 
+Além dos módulos base:
 
+```bash
+pip install git+https://github.com/zacariasjuliano/akademy_company
