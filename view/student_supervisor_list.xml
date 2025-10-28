@@ -2,5 +2,6 @@
 <tree>    
     <field name="party"/>  
     <field name="degree_kinship"/>
+    <field name="is_primary"/>
     <field name="phone_number"/>
 </tree>

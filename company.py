@@ -6,9 +6,44 @@ from datetime import date
 
 
 _DEGREE_KINSHIP = [
-    ('Pai', 'Pai'), ('Mãe', 'Mãe'),
-    ('Responsável', 'Responsável'),
+    # Parentesco direto (linha reta)
+    ('pai', 'Pai'),
+    ('mae', 'Mãe'),
+    ('padrasto', 'Padrasto'),
+    ('madrasta', 'Madrasta'),
+    ('filho', 'Filho'),
+    ('filha', 'Filha'),
+    ('avo', 'Avô'),
+    ('avoa', 'Avó'),
+    ('bisavo', 'Bisavô'),
+    ('bisavoa', 'Bisavó'),
+
+    # Parentesco colateral
+    ('irmao', 'Irmão'),
+    ('irma', 'Irmã'),
+    ('tio', 'Tio'),
+    ('tia', 'Tia'),
+    ('primo', 'Primo'),
+    ('prima', 'Prima'),
+    ('sobrinho', 'Sobrinho'),
+    ('sobrinha', 'Sobrinha'),
+
+    # Afinidade ou tutela
+    ('tutor_legal', 'Tutor Legal'),
+    ('encarregado', 'Encarregado'),
+    ('guardiao', 'Guardião'),
+    ('cuidador', 'Cuidador(a)'),
+    ('companheiro_pai', 'Companheiro(a) do Pai'),
+    ('companheiro_mae', 'Companheiro(a) da Mãe'),
+    ('padrinho', 'Padrinho'),
+    ('madrinha', 'Madrinha'),
+
+    # Outros vínculos
+    ('amigo_familia', 'Amigo da Família'),
+    ('responsavel', 'Responsável'),
+    ('outro', 'Outro'),
 ]
+
 
 
 class Company(metaclass=PoolMeta):
@@ -130,7 +165,9 @@ class StudentSupervisor(ModelSQL, ModelView):
     degree_kinship = fields.Selection(_DEGREE_KINSHIP, 
         string=u'Grau parentesco', required=True)
     phone_number = fields.Char('Telefone', size=20,
-        help="Número de telefone")    
+        help="Número de telefone")
+    is_primary = fields.Boolean('Principal', 
+        help='Indica se é o encarregado principal')    
     student = fields.Many2One('company.student', 'Discente', required=True)
     party = fields.Many2One('party.party', 'Encarregado', required=True)
 
