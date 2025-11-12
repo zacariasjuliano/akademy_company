@@ -9,8 +9,6 @@
 
 ## 📘 Sobre o Projeto
 
-## 📘 Sobre o Projeto
-
 **O SAGE Education** é um projeto ***livre e gratuito*** para ***educadores, instituições de ensino e governos***.
 Ele fornece a funcionalidade de **Sistema de Gestão Académica (SGA), Sistema de Gestão Escolar (SGE) e Sistema de Informação Educacional (SIE)**.
 O seu design ***modular, escalavél e seguro*** permite que seja implementado em muitos cenários diferentes: desde **pequenas escolas** e **centros de formação** até **grandes sistemas nacionais de educação pública**.
